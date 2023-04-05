@@ -35,12 +35,12 @@ producing the final annotations
 ## How to run
 
 ### Using the `Main` method
-- in Windows, set options `pipe`, `export` and arguments as follows:
+- in Windows, set options `pipe` and arguments as follows:
 
-`--pipe -i H:\[CORPUS_DIR] -x H:\[ANNOTATED_XML_DIR] --export -o [FILE_NAME].csv`
+`--pipe -i H:\[CORPUS_DIR] -x H:\[ANNOTATED_XML_DIR]`
 - in Ubuntu
 
-`--pipe -i [CORPUS_DIR] -x [ANNOTATED_XML_DIR] --export -o [FILE_NAME].csv`
+`--pipe -i [CORPUS_DIR] -x [ANNOTATED_XML_DIR]`
 
 ### Using the exec-maven-plugin
 1. Set the argument values directly inside the plugin inside `<configuration>`
@@ -56,9 +56,7 @@ producing the final annotations
         <arguments>
             <argument>--pipe</argument>
             <argument>-i H:\[CORPUS_DIR]</argument>
-            <argument>-x H:\[ANNOTATED_XML_DIR]</argument>
-            <argument>--export</argument>
-            <argument>-o [ANNOTATION_FILE_NAME].csv</argument>
+            <argument>-x H:\[ANNOTATED_XML_DIR]</argument>            
         </arguments>
     </configuration>
 </plugin>
@@ -72,11 +70,11 @@ or
 For Windows
 ```shell
 mvn exec:java -D'exec.mainClass'='uk.ac.rothamsted.ide.gbcl.Main' \
-    -D'exec.args'="--pipe -i H:\[CORPUS_DIR] -x H:\[ANNOTATED_XML_DIR] --export -o [FILE_NAME].csv"
+    -D'exec.args'="--pipe -i H:\[CORPUS_DIR] -x H:\[ANNOTATED_XML_DIR]"
 ```
 
 For Linux
 ```shell
  mvn exec:java -Dexec.mainClass=uk.ac.rothamsted.ide.gbcl.Main \
-     -Dexec.args="--pipe -i [CORPUS_DIR] -x [ANNOTATED_XML_DIR] --export -o [FILE_NAME].csv"
+     -Dexec.args="--pipe -i [CORPUS_DIR] -x [ANNOTATED_XML_DIR]"
 ```
