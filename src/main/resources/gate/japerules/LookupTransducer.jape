@@ -1,0 +1,206 @@
+Phase:LookupCleaner
+Input: Lookup Tagger Token
+
+Options: control = all
+
+// One for each gazetteer
+
+/**
+  CropNameCommonLookupRule
+  This rule uses the gazetteer crop_name_common.lst and
+  applies the rule to annotate them as CropNameCommon after a match.
+*/
+Rule:CropNameCommonLookupRule
+(
+    { Lookup.majorType == "crop_name_common" }
+):crop_name_common
+-->
+//:crop_name_common.CropNameCommon = {rule = "CropNameCommonLookupRule"}
+{
+  AnnotationSet annSet    = (gate.AnnotationSet) bindings.get("crop_name_common");
+  Annotation  ann   = annSet.iterator().next();
+  String id = ann.getFeatures().get("id").toString();
+  FeatureMap features = Factory.newFeatureMap();
+  features.put("id", id);
+  features.put("rule", "CropNameCommonLookupRule");
+  outputAS.add(ann.getStartNode(), ann.getEndNode(), "CropNameCommon", features);
+}
+
+
+/**
+  CropNameLatinLookupRule
+  This rule uses the gazetteer crop_name_latin.lst and
+  applies the rule to annotate them as CropNameLatin after a match.
+*/
+Rule:CropNameLatinLookupRule
+(
+    { Lookup.majorType == "crop_name_latin" }
+):crop_name_latin
+-->
+//:crop_name_latin.CropNameLatin = {rule = "CropNameLatinLookupRule"}
+{
+  AnnotationSet annSet    = (gate.AnnotationSet) bindings.get("crop_name_latin");
+  Annotation  ann   = annSet.iterator().next();
+  String id = ann.getFeatures().get("id").toString();
+  FeatureMap features = Factory.newFeatureMap();
+  features.put("id", id);
+  features.put("rule", "CropNameLatinLookupRule");
+  outputAS.add(ann.getStartNode(), ann.getEndNode(), "CropNameLatin", features);
+}
+
+
+/**
+  CropNameVarietyLookupRule
+  This rule uses the gazetteer crop_name_variety.lst and
+  applies the rule to annotate them as CropNameVariety after a match.
+*/
+Rule:CropNameVarietyLookupRule
+(
+    { Lookup.majorType == "crop_name_variety" }
+):crop_name_variety
+-->
+//:crop_name_variety.CropNameVariety = {rule = "CropNameVarietyLookupRule"}
+{
+  AnnotationSet annSet    = (gate.AnnotationSet) bindings.get("crop_name_variety");
+  Annotation  ann   = annSet.iterator().next();
+  String id = ann.getFeatures().get("id").toString();
+  FeatureMap features = Factory.newFeatureMap();
+  features.put("id", id);
+  features.put("rule", "CropNameLatinLookupRule");
+  outputAS.add(ann.getStartNode(), ann.getEndNode(), "CropNameVariety", features);
+}
+
+
+/**
+  PestNameCommonLookupRule
+  This rule uses the gazetteer pest_name_common.lst and
+  applies the rule to annotate them as PestNameCommon after a match.
+*/
+Rule:PestNameCommonLookupRule
+(
+    { Lookup.majorType == "pest_name_common" }
+):pest_name_common
+-->
+//:pest_name_common.PestNameCommon = {rule = "PestNameCommonLookupRule"}
+{
+  AnnotationSet annSet    = (gate.AnnotationSet) bindings.get("pest_name_common");
+  Annotation  ann   = annSet.iterator().next();
+  String unitId = ann.getFeatures().get("id").toString();
+  FeatureMap features = Factory.newFeatureMap();
+  features.put("id", unitId);
+  features.put("rule", "PestNameCommonLookupRule");
+  outputAS.add(ann.getStartNode(), ann.getEndNode(), "PestNameCommon", features);
+}
+
+
+/**
+  PestNameLatinLookupRule
+  This rule uses the gazetteer pest_name_latin.lst and
+  applies the rule to annotate them as PestNameLatin after a match.
+*/
+Rule:PestNameLatinLookupRule
+(
+    { Lookup.majorType == "pest_name_latin" }
+):pest_name_latin
+-->
+//:pest_name_latin.PestNameLatin = {rule = "PestNameLatinLookupRule"}
+{
+  AnnotationSet annSet    = (gate.AnnotationSet) bindings.get("pest_name_latin");
+  Annotation  ann   = annSet.iterator().next();
+  String unitId = ann.getFeatures().get("id").toString();
+  FeatureMap features = Factory.newFeatureMap();
+  features.put("id", unitId);
+  features.put("rule", "PestNameLatinLookupRule");
+  outputAS.add(ann.getStartNode(), ann.getEndNode(), "PestNameLatin", features);
+}
+
+
+/**
+  PestNameSynonymLookupRule
+  This rule uses the gazetteer pest_name_synonym.lst and
+  applies the rule to annotate them as PestNameSynonym after a match.
+*/
+Rule:PestNameSynonymLookupRule
+(
+    { Lookup.majorType == "pest_name_synonym" }
+):pest_name_synonym
+-->
+//:pest_name_synonym.PestNameSynonym = {rule = "PestNameSynonymLookupRule"}
+{
+  AnnotationSet annSet    = (gate.AnnotationSet) bindings.get("pest_name_synonym");
+  Annotation  ann   = annSet.iterator().next();
+  String unitId = ann.getFeatures().get("id").toString();
+  FeatureMap features = Factory.newFeatureMap();
+  features.put("id", unitId);
+  features.put("rule", "PestNameSynonymLookupRule");
+  outputAS.add(ann.getStartNode(), ann.getEndNode(), "PestNameSynonym", features);
+}
+
+
+/**
+    ImpactDirectionLookupRule
+    This rule uses the gazetteer impact_direction.lst and
+    applies the rule to annotate them as ImpactDirection after a match.
+*/
+Rule:ImpactDirectionLookupRule
+(
+    { Lookup.majorType == "impact_direction" }
+):impact_direction
+-->
+//:impact_direction.ImpactDirection = {rule = "ImpactDirectionLookupRule"}
+{
+  AnnotationSet annSet    = (gate.AnnotationSet) bindings.get("impact_direction");
+  Annotation  ann   = annSet.iterator().next();
+  String id = ann.getFeatures().get("id").toString();
+  FeatureMap features = Factory.newFeatureMap();
+  features.put("id", id);
+  //features.put("string", annString);
+  features.put("rule", "ImpactDirectionLookupRule");
+  outputAS.add(ann.getStartNode(), ann.getEndNode(), "ImpactDirection", features);
+}
+
+
+/**
+    ImpactNumberUnitLookupRule
+    This rule uses the gazetteer impact_number_unit.lst and
+    applies the rule to annotate them as ImpactNumberUnit after a match.
+*/
+Rule:ImpactNumberUnitLookupRule
+(
+    { Lookup.majorType == "impact_number_unit" }
+):impact_number_unit
+-->
+//:impact_number_unit.ImpactNumberUnit = {rule = "ImpactNumberUnitLookupRule"}
+{
+  AnnotationSet annSet    = (gate.AnnotationSet) bindings.get("impact_number_unit");
+  Annotation  ann   = annSet.iterator().next();
+  String id = ann.getFeatures().get("id").toString();
+  FeatureMap features = Factory.newFeatureMap();
+  features.put("id", id);
+  //features.put("string", annString);
+  features.put("rule", "ImpactNumberUnitLookupRule");
+  outputAS.add(ann.getStartNode(), ann.getEndNode(), "ImpactNumberUnit", features);
+}
+
+
+/**
+  YieldMentionLookupRule
+  This rules uses the gazetteer yield_mention.lst and
+  applies the rule to annotate them as YieldMention after a match.
+*/
+Rule:YieldMentionLookupRule
+(
+    { Lookup.majorType == "yield_mention" }
+):yield_mention
+-->
+//:yield_mention.YieldMention = {rule = "YieldMentionLookupRule"}
+{
+  AnnotationSet annSet    = (gate.AnnotationSet) bindings.get("yield_mention");
+  Annotation  ann   = annSet.iterator().next();
+  String id = ann.getFeatures().get("id").toString();
+  FeatureMap features = Factory.newFeatureMap();
+  features.put("id", id);
+  //features.put("string", annString);
+  features.put("rule", "YieldMentionLookupRule");
+  outputAS.add(ann.getStartNode(), ann.getEndNode(), "YieldMention", features);
+}

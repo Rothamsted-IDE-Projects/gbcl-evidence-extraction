@@ -1,0 +1,100 @@
+Imports: {
+	import java.lang.*;
+	import java.io.*;
+	import java.util.regex.*;
+	import uk.ac.rothamsted.ide.gbcl.*;
+	import java.net.*;
+}
+
+Phase:CooccurrenceMatcher
+Input: Token
+
+Options: control = once
+
+Rule:extract
+(
+	{Token}
+
+):ground
+
+-->
+{
+		java.util.logging.Logger log=null;
+		if(log==null){
+		    log =  java.util.logging.Logger.getLogger("JAPELogger");
+		    log.setLevel(java.util.logging.Level.OFF);
+		}
+
+	try {
+
+		//System.out.println("Jape works @@@@@@@@@@@@@@@@@@@@@@@");
+		CooccurrenceMatcher om = new CooccurrenceMatcher();
+        //List annotationTypes = Arrays.asList(new String[]{"Organism","TaxonomicUnit","Location","YIELD_IMPACT"});
+        //List annotationTypes = Arrays.asList(new String[]{"Pest", "Crop", "Location", "ImpactNumber", "ImpactNumberUnit", "ImpactDirection", "YieldMention"});
+        //List annotationTypes = Arrays.asList(new String[]{"Pest", "Crop", "Location", "ImpactNumberUnit", "ImpactDirection"});
+        //List annotationTypes = Arrays.asList(new String[]{"Pest", "Crop", "Location", "ImpactNumberUnit"});
+        //List annotationTypes = Arrays.asList(new String[]{"Pest", "Crop", "Location"});
+        //List annotationTypes = Arrays.asList(new String[]{"Pest", "Crop"});
+
+        //List annotationTypes = Arrays.asList(new String[]{"Pest", "ImpactNumberUnit", "ImpactDirection", "YieldMention"});
+
+		List annotationTypes = Arrays.asList(new String[]{"Pest"});
+		om.annotate(doc, annotationTypes, "Coo_P", 1);
+		om.annotate(doc, annotationTypes, "Coo_P", 2);
+		om.annotate(doc, annotationTypes, "Coo_P", 3);
+
+		annotationTypes = Arrays.asList(new String[]{"Pest", "Crop"});
+        om.annotate(doc, annotationTypes, "Coo_PC", 1);
+        om.annotate(doc, annotationTypes, "Coo_PC", 2);
+        om.annotate(doc, annotationTypes, "Coo_PC", 3);
+
+		annotationTypes = Arrays.asList(new String[]{"Pest", "YieldMention"});
+        om.annotate(doc, annotationTypes, "Coo_PYm", 1);
+        om.annotate(doc, annotationTypes, "Coo_PYm", 2);
+        om.annotate(doc, annotationTypes, "Coo_PYm", 3);
+
+        annotationTypes = Arrays.asList(new String[]{"Pest", "Crop", "Location"});
+        om.annotate(doc, annotationTypes, "Coo_PCL", 1);
+        om.annotate(doc, annotationTypes, "Coo_PCL", 2);
+        om.annotate(doc, annotationTypes, "Coo_PCL", 3);
+
+        annotationTypes = Arrays.asList(new String[]{"Pest", "ImpactDirection", "YieldMention"});
+        om.annotate(doc, annotationTypes, "Coo_PIdYm", 1);
+        om.annotate(doc, annotationTypes, "Coo_PIdYm", 2);
+        om.annotate(doc, annotationTypes, "Coo_PIdYm", 3);
+
+        annotationTypes = Arrays.asList(new String[]{"Pest", "Crop", "Location", "ImpactNumber"});
+        om.annotate(doc, annotationTypes, "Coo_PCLIn", 1);
+        om.annotate(doc, annotationTypes, "Coo_PCLIn", 2);
+        om.annotate(doc, annotationTypes, "Coo_PCLIn", 3);
+
+
+        annotationTypes = Arrays.asList(new String[]{"Pest", "Crop", "Location", "ImpactNumber", "ImpactNumberUnit"});
+        om.annotate(doc, annotationTypes, "Coo_PCLInU", 1);
+        om.annotate(doc, annotationTypes, "Coo_PCLInU", 2);
+        om.annotate(doc, annotationTypes, "Coo_PCLInU", 3);
+
+
+        annotationTypes = Arrays.asList(new String[]{"Pest", "Crop", "Location", "ImpactNumber", "ImpactNumberUnit", "ImpactDirection"});
+        om.annotate(doc, annotationTypes, "Coo_PCLInUId", 1);
+        om.annotate(doc, annotationTypes, "Coo_PCLInUId", 2);
+        om.annotate(doc, annotationTypes, "Coo_PCLInUId", 3);
+
+        annotationTypes = Arrays.asList(new String[]{"Pest", "Crop", "Location", "ImpactNumber", "ImpactNumberUnit", "ImpactDirection", "YieldMention"});
+        om.annotate(doc, annotationTypes, "Coo_PCLInUIdYm", 1);
+        om.annotate(doc, annotationTypes, "Coo_PCLInUIdYm", 2);
+        om.annotate(doc, annotationTypes, "Coo_PCLInUIdYm", 3);
+
+
+
+        om.close();
+
+
+
+
+
+	}
+	catch(Exception e) {
+		e.printStackTrace();
+	}
+}

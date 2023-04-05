@@ -1,0 +1,21 @@
+Phase: unifycropname
+Input: Token CropNameCommon CropNameLatin CropNameVariety
+Options: control = appelt
+
+Rule: CropNameUnifierLookupRule
+Priority: 20
+(
+	({CropNameCommon} | {CropNameLatin} | {CropNameVariety})
+):crop
+-->
+//:crop.Crop = {rule = "CropNameUnifierLookupRule"}
+{
+  AnnotationSet annSet    = (gate.AnnotationSet) bindings.get("crop");
+  Annotation  ann   = annSet.iterator().next();
+  String id = ann.getFeatures().get("id").toString();
+  FeatureMap features = Factory.newFeatureMap();
+  features.put("id", id);
+  //features.put("string", annString);
+  features.put("rule", "CropNameUnifierLookupRule");
+  outputAS.add(ann.getStartNode(), ann.getEndNode(), "Crop", features);
+}

@@ -1,0 +1,21 @@
+Phase: unifypestname
+Input: Token PestNameCommon PestNameLatin PestNameSynonym
+Options: control = appelt
+
+Rule: PestNameUnifierLookupRule
+Priority: 20
+(
+	({PestNameCommon} | {PestNameLatin} | {PestNameSynonym})
+):pest
+-->
+//:pest.Pest = {rule = "PestNameUnifierLookupRule"}
+{
+  AnnotationSet annSet    = (gate.AnnotationSet) bindings.get("pest");
+  Annotation  ann   = annSet.iterator().next();
+  String id = ann.getFeatures().get("id").toString();
+  FeatureMap features = Factory.newFeatureMap();
+  features.put("id", id);
+  //features.put("string", annString);
+  features.put("rule", "PestNameUnifierLookupRule");
+  outputAS.add(ann.getStartNode(), ann.getEndNode(), "Pest", features);
+}

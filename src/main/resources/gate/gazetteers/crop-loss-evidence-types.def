@@ -1,0 +1,9 @@
+crop_name_common.lst:crop_name_common
+crop_name_latin.lst:crop_name_latin
+crop_name_variety.lst:crop_name_variety
+pest_name_common.lst:pest_name_common
+pest_name_latin.lst:pest_name_latin
+pest_name_synonym.lst:pest_name_synonym
+impact_direction.lst:impact_direction
+impact_number_unit.lst:impact_number_unit
+yield_mention.lst:yield_mention
